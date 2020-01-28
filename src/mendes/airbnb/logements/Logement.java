@@ -3,11 +3,11 @@ package mendes.airbnb.logements;
 import mendes.airbnb.utilisateurs.Personne;
 
 public class Logement {
-	Personne hote;
-	int tarifParNuit;
-	String adresse;
-	int superficie;
-	int nbVoyageursMax;
+	private Personne hote;
+	private int tarifParNuit;
+	private String adresse;
+	private int superficie;
+	private int nbVoyageursMax;
 	
 	public Logement(Personne hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax) {
 		
@@ -26,9 +26,6 @@ public class Logement {
 		hote.afficher();
 		System.out.println(".");
 		System.out.println("Le logement est situé sur " + adresse + ".");
-		System.out.println("Superficie :" + superficie + "m2");
-		
-	}
-	
-	
+		System.out.println("Superficie : " + superficie + "m2");		
+	}	
 }
