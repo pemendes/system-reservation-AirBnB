@@ -13,6 +13,7 @@ public class Main {
 	public static void main(String[] args) throws ParseException {
 		
 		String dateEntree = "05/12/2016";
+		System.out.println(dateEntree);
 		Date dateDeReservasion = new Date();	
 		
 		Personne voyageur = new Personne("Maxime", "Albert", 29);

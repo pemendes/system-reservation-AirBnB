@@ -20,13 +20,13 @@ public class Utile {
 	
 	
 	/**
-	 * crée un objet date à partir d'un parametre String au format pattern("dd/MM/yyy")
+	 * Méthode permettant de créer un objet date à partir d'un parametre String au format pattern("dd/MM/yyy")
 	 * dd: pour le jour
 	 * MM: pour le mois
 	 * yyyy: pour l'année
 	 * (e.g. String date = "01/01/1970" ===> Date date)
-	 * @param date
-	 * @return
+	 * @param date String au format pattern("dd/MM/yyy")
+	 * @return ma date est initialisée
 	 * @throws ParseException
 	 */
 	public static Date construirDate(String date) throws ParseException {
