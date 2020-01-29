@@ -3,11 +3,16 @@ package mendes.airbnb;
 
 import java.text.ParseException;
 import java.util.Date;
+
+import mendes.airbnb.logements.Appartement;
 import mendes.airbnb.logements.Logement;
+import mendes.airbnb.logements.Maison;
+import mendes.airbnb.outils.MaDate;
 import mendes.airbnb.outils.Utile;
 import mendes.airbnb.reservations.Reservation;
 import mendes.airbnb.reservations.Sejour;
-import mendes.airbnb.utilisateurs.Personne;
+import mendes.airbnb.utilisateurs.Hote;
+import mendes.airbnb.utilisateurs.Voyageur;
 
 public class Main {
 
@@ -15,26 +20,31 @@ public class Main {
 		
 		// ----------------------------------------------------
 				// Données - Personnes et Logements
-				Personne personne1 = new Personne("Peter", "Bardu", 31);
-				Personne personne2 = new Personne("Michel", "Jordan", 34);
-				Personne personne3 = new Personne("Jean", "Mi", 24);
-				Personne personne4 = new Personne("Emma", "Martin", 31);
+				Hote personne1 = new Hote("Peter", "Bardu", 31, 12);
+				Voyageur personne2 = new Voyageur("Michel", "Jordan", 34);
+				Voyageur personne3 = new Voyageur("Jean", "Mi", 24);
+				Hote personne4 = new Hote("Emma", "Martin", 31, 2);
 
-				Logement logement1 = new Logement(personne1, 100, "81 rue Colbert", 60, 4);
-				Logement logement2 = new Logement(personne1, 60, "83 rue Colbert", 60, 4);
-				Logement logement3 = new Logement(personne4, 130, "85 rue Colbert", 60, 4);
+				Maison logement1 = new Maison(personne1, 100, "81 rue Colbert", 80, 4, 40, true);
+				Appartement logement2 = new Appartement(personne1, 60, "83 rue Colbert", 60, 4, 1, 20);
+				Maison logement3 = new Maison(personne4, 130, "85 rue Colbert", 60, 4, 20, false);
 
 				// ----------------------------------------------------
 				// Critère de séjour
 				Date dateArrivee = Utile.stringToDate("01/07/2020");
 				int nbNuits = 2;
 				int nbVoyageurs = 2;
-				Logement logement = logement2;
+				Appartement logement = logement2;
 
 				Sejour sejour = new Sejour(dateArrivee, nbNuits, logement, nbVoyageurs);
 
 				Reservation reservation = new Reservation(0, sejour, personne3);
-				reservation.afficher();
+				logement1.afficher();
+				
+				System.out.println("----------- Test MaDate -----------");
+				
+				MaDate d = new MaDate(22, 4, 2020);
+				System.out.println(d.toString());
 			}
 }
 

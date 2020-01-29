@@ -1,19 +1,18 @@
 package mendes.airbnb.reservations;
 
-import java.text.ParseException;
 import java.util.Date;
 
-import mendes.airbnb.outils.Utile;
 import mendes.airbnb.utilisateurs.Personne;
+import mendes.airbnb.utilisateurs.Voyageur;
 
 public class Reservation {
 	private int identifiant;
 	private Sejour sejour;
-	private Personne voyageur;
+	private Voyageur voyageur;
 	private boolean estValidee;
 	private Date dateDeReservation;
 
-	public Reservation(int identifiant, Sejour sejour, Personne voyageur) {
+	public Reservation(int identifiant, Sejour sejour, Voyageur voyageur) {
 		this.identifiant = identifiant;
 		this.sejour = sejour;
 		this.voyageur = voyageur;
