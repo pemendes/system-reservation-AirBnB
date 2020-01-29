@@ -9,14 +9,20 @@ public class MaDate extends Date {
 	public MaDate(int pJour, int pMois, int pAnnee) {
 		super(pAnnee - 1900, pMois - 1, pJour);
 	}
+	
+	@SuppressWarnings("deprecation")
+	public MaDate(String pDate) {
+		super(pDate);
+	}
 		
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
 		int year = this.getYear();
 		int month = this.getMonth();
 		int date = this.getDate();
-		
 		return date + "/" + (month + 1) + "/" + (year + 1900);
+
 	}
 }

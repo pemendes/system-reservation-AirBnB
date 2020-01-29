@@ -2,13 +2,10 @@ package mendes.airbnb;
 
 
 import java.text.ParseException;
-import java.util.Date;
 
 import mendes.airbnb.logements.Appartement;
-import mendes.airbnb.logements.Logement;
 import mendes.airbnb.logements.Maison;
 import mendes.airbnb.outils.MaDate;
-import mendes.airbnb.outils.Utile;
 import mendes.airbnb.reservations.Reservation;
 import mendes.airbnb.reservations.Sejour;
 import mendes.airbnb.utilisateurs.Hote;
@@ -31,7 +28,8 @@ public class Main {
 
 				// ----------------------------------------------------
 				// Critère de séjour
-				Date dateArrivee = Utile.stringToDate("01/07/2020");
+				//Date dateArrivee = Utile.stringToDate("01/07/2020");
+				MaDate dateArrivee = new MaDate(01, 7, 2020);
 				int nbNuits = 2;
 				int nbVoyageurs = 2;
 				Appartement logement = logement2;
@@ -39,12 +37,12 @@ public class Main {
 				Sejour sejour = new Sejour(dateArrivee, nbNuits, logement, nbVoyageurs);
 
 				Reservation reservation = new Reservation(0, sejour, personne3);
-				logement1.afficher();
+				reservation.afficher();
 				
-				System.out.println("----------- Test MaDate -----------");
+				//System.out.println("----------- Test MaDate -----------");
 				
-				MaDate d = new MaDate(22, 4, 2020);
-				System.out.println(d.toString());
+				//MaDate d = new MaDate("04/01/2020");
+				//System.out.println(d.toString());
 			}
 }
 
