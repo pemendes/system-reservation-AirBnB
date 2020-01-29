@@ -9,8 +9,8 @@ package mendes.airbnb.utilisateurs;
  */
 
 public class Personne {
-	private String prenom;
 	private String nom;
+	private String prenom;
 	private int age;
 	
 	/**
@@ -22,20 +22,17 @@ public class Personne {
 	 * @param age
 	 * 			pour le this.age
 	 */
-	
-	public Personne(String prenom, String nom, int age) {
-		
-		this.prenom = prenom;
-		this.nom = nom;
-		this.age = age;
+	public Personne(String pPrenom, String pNom, int pAge) {
+		nom = pNom;
+		prenom = pPrenom;
+		age = pAge;
 	}
 	
 	/**
 	 * Affichage de la personne dans la console au format prénom nom (age ans)
 	 * (e.g Pedro Mendes (38 ans)
 	 */
-	
 	public void afficher() {
-		System.out.print(prenom + " " + nom + " (" + age + " ans)");
-	}	
+		System.out.print(prenom + " " + nom );
+	}
 }

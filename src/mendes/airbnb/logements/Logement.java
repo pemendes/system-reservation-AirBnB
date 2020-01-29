@@ -8,9 +8,8 @@ public class Logement {
 	private String adresse;
 	private int superficie;
 	private int nbVoyageursMax;
-	
+
 	public Logement(Personne hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax) {
-		
 		this.hote = hote;
 		this.tarifParNuit = tarifParNuit;
 		this.adresse = adresse;
@@ -21,11 +20,11 @@ public class Logement {
 	public int getTarifParNuit() {
 		return tarifParNuit;
 	}
-	
-	public void afficher(){
+
+	public void afficher() {
+		System.out.print("l'hôte ");
 		hote.afficher();
-		System.out.println(".");
-		System.out.println("Le logement est situé sur " + adresse + ".");
-		System.out.println("Superficie : " + superficie + "m2");		
-	}	
+		System.out.println(".");		
+		System.out.println("L'adresse : " + adresse);
+	}
 }
