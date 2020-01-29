@@ -16,7 +16,7 @@ public abstract class Logement {
 		this.adresse = adresse;
 		this.superficie = superficie;
 		this.nbVoyageursMax = nbVoyageursMax;
-	}	
+	}
 
 	public Hote getHote() {
 		return hote;
@@ -37,9 +37,7 @@ public abstract class Logement {
 	public int getNbVoyageursMax() {
 		return nbVoyageursMax;
 	}
-	
 
-	
 	public abstract int getSuperficieTotal();
 
 	public abstract void afficher();
