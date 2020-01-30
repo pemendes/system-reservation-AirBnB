@@ -32,6 +32,6 @@ public class Personne {
 	 * Pedro Mendes (38 ans)
 	 */
 	public void afficher() {
-		System.out.print(prenom + " " + nom);
+		System.out.print(prenom + " " + nom + " (" + age + " ans)");
 	}
 }

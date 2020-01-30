@@ -6,7 +6,8 @@ import mendes.airbnb.logements.Appartement;
 import mendes.airbnb.logements.Maison;
 import mendes.airbnb.outils.MaDate;
 import mendes.airbnb.reservations.Reservation;
-import mendes.airbnb.reservations.Sejour;
+import mendes.airbnb.reservations.SejourCourt;
+import mendes.airbnb.reservations.SejourLong;
 import mendes.airbnb.utilisateurs.Hote;
 import mendes.airbnb.utilisateurs.Voyageur;
 
@@ -14,33 +15,38 @@ public class Main {
 
 	public static void main(String[] args) throws ParseException {
 
-		// ----------------------------------------------------
-		// Données - Personnes et Logements
-		Hote personne1 = new Hote("Peter", "Bardu", 31, 12);
-		Voyageur personne2 = new Voyageur("Michel", "Jordan", 34);
-		Voyageur personne3 = new Voyageur("Jean", "Mi", 24);
-		Hote personne4 = new Hote("Emma", "Martin", 31, 2);
+		System.out.println("Bienvenue chez AirBnB");
+		System.out.println("Réservation n°1");
+		System.out.println("");
 
-		Maison logement1 = new Maison(personne1, 100, "81 rue Colbert", 80, 4, 40, true);
-		Appartement logement2 = new Appartement(personne1, 60, "83 rue Colbert", 60, 4, 1, 20);
-		Maison logement3 = new Maison(personne4, 130, "85 rue Colbert", 60, 4, 20, false);
+		Hote hote = new Hote("Peter", "Bardu", 31, 12);
+		// Hote hote1 = new Hote("Emma", "Martin", 31, 2);
+		Voyageur voyageur = new Voyageur("Maxime", "Albert", 29);
+		// Voyageur voyageur2 = new Voyageur("Michel", "Jordan", 34);
 
-		// ----------------------------------------------------
-		// Critère de séjour
-		// Date dateArrivee = Utile.stringToDate("01/07/2020");
-		MaDate dateArrivee = new MaDate(01, 7, 2020);
-		int nbNuits = 2;
+		Maison maison = new Maison(hote, 40, "292 rue Colbert, 37000 Tours", 140, 1, 500, true);
+		Appartement appartement = new Appartement(hote, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 1, 20);
+
+		MaDate dateArrivee = new MaDate(5, 12, 2016);
+		int nbNuits = 4;
+		int nbNuits1 = 7;
 		int nbVoyageurs = 2;
-		Appartement logement = logement2;
+		int nPROMOTION_EN_POURCENTAGE = 20;
 
-		Sejour sejour = new Sejour(dateArrivee, nbNuits, logement, nbVoyageurs);
+		SejourCourt sejourCourt = new SejourCourt(dateArrivee, nbNuits, maison, nbVoyageurs);
+		SejourLong sejourLong = new SejourLong(dateArrivee, nbNuits1, appartement, nbVoyageurs,
+				nPROMOTION_EN_POURCENTAGE);
 
-		Reservation reservation = new Reservation(0, sejour, personne3);
-		reservation.afficher();
+		Reservation reservation1 = new Reservation(0, sejourCourt, voyageur);
+		Reservation reservation2 = new Reservation(0, sejourLong, voyageur);
 
-		// System.out.println("----------- Test MaDate -----------");
-
-		// MaDate d = new MaDate("04/01/2020");
-		// System.out.println(d.toString());
+		System.out.println("--------- Court séjour ---------");
+		System.out.println("");
+		reservation1.afficher();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("--------- Long séjour ---------");
+		System.out.println("");
+		reservation2.afficher();
 	}
 }

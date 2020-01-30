@@ -32,10 +32,7 @@ public class MaDate extends Date {
 	@SuppressWarnings("deprecation")
 	@Override
 	public String toString() {
-		int year = this.getYear();
-		int month = this.getMonth();
-		int date = this.getDate();
-		return date + "/" + (month + 1) + "/" + (year + 1900);
+		return getDate() + "/" + (getMonth() + 1) + "/" + (getYear() + 1900);
 
 	}
 }
