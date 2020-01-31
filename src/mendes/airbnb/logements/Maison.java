@@ -17,8 +17,8 @@ public class Maison extends Logement {
 	public void afficher() {
 		String isPiscine = (possedePiscine == true) ? "Oui" : "Non";
 		String isJardin = superficieJardin > 0 ? "Oui" : "Non";
-		hote.afficher();
-		System.out.println("Le logement est une maison située au " + adresse + ".");
+		getHote().afficher();
+		System.out.println("Le logement est une maison située au " + getAdresse() + ".");
 		System.out.println("Superficie : " + getSuperficie() + "m2");
 		System.out.println("Jardin : " + isJardin + " (" + superficieJardin + "m2)");
 		System.out.println("Balcon : " + isPiscine);

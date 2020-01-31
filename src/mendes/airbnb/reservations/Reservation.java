@@ -2,7 +2,6 @@ package mendes.airbnb.reservations;
 
 import java.util.Date;
 
-import mendes.airbnb.utilisateurs.Personne;
 import mendes.airbnb.utilisateurs.Voyageur;
 
 public class Reservation {

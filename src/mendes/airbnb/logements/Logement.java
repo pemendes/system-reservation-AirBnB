@@ -1,12 +1,11 @@
 package mendes.airbnb.logements;
 
 import mendes.airbnb.utilisateurs.Hote;
-import mendes.airbnb.utilisateurs.Personne;
 
 public abstract class Logement {
-	protected Hote hote;
+	private Hote hote;
 	private int tarifParNuit;
-	protected String adresse;
+	private String adresse;
 	private int superficie;
 	private int nbVoyageursMax;
 

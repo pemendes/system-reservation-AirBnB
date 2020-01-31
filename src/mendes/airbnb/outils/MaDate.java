@@ -6,8 +6,8 @@ public class MaDate extends Date {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Constructeur permettant de créer une date à partir de jour mois année (e.g. jour :
-	 * 2, mois : 4, année : 2020 pour le 2 Avril 2020)
+	 * Constructeur permettant de créer une date à partir de jour mois année (e.g.
+	 * jour : 2, mois : 4, année : 2020 pour le 2 Avril 2020)
 	 * 
 	 * @param jour  le jour de la date entre 1 et 31
 	 * @param mois  le mois de la date entre 1 et 12 (e.g. 1 pour janvier)

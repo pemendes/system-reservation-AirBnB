@@ -18,9 +18,20 @@ public abstract class Sejour implements SejourInterface {
 		nbNuits = pNbNuits;
 		this.logement = logement;
 		nbVoyageurs = pNbVoyageurs;
-		tarif = getTarif();
+		//tarif = getTarif();
+		//tarif = nbNuits * logement.getTarifParNuit();
+		miseAJourDuTarif();
 	}
+	
+	public int getTarif() {
+		return tarif;
+	}
+	
+	public abstract void miseAJourDuTarif();
 
+	//@Override
+	//public abstract boolean verificationNombreDeNuits();
+	
 	@Override
 	public boolean verficationDateArrivee() {
 		Date dateDuJour = new Date();
@@ -31,11 +42,6 @@ public abstract class Sejour implements SejourInterface {
 	}
 
 	@Override
-	public abstract boolean verificationNombreDeNuits();
-
-	// public abstract int miseAJourDuTarif();
-
-	@Override
 	public boolean verificationNombreDeVoyageurs() {
 		if (nbVoyageurs > 0 && nbVoyageurs <= logement.getNbVoyageursMax()) {
 			return true;
@@ -43,10 +49,6 @@ public abstract class Sejour implements SejourInterface {
 		return false;
 
 		// return nbVoyageurs >0 && nbVoyageurs <= logement.getNbVoyageursMax();
-	}
-
-	public int getTarif() {
-		return tarif = nbNuits * logement.getTarifParNuit();
 	}
 	
 	@Override
