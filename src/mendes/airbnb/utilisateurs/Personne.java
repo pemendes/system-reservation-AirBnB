@@ -26,6 +26,25 @@ public class Personne {
 		prenom = pPrenom;
 		age = pAge;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj) {
+			return true;
+		}
+		
+		if (obj instanceof Personne) {
+			
+			Personne personne = (Personne) obj;
+			
+			return this.prenom.equals(personne.prenom) 
+					&& this.nom.equals(personne.nom) 
+					&& this.age == personne.age;	
+		}
+		
+		return false;
+	}
 
 	/**
 	 * Affichage de la personne dans la console au format prénom nom (age ans) (e.g
@@ -35,3 +54,4 @@ public class Personne {
 		System.out.print(prenom + " " + nom + " (" + age + " ans)");
 	}
 }
+

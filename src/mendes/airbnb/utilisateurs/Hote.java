@@ -1,20 +1,34 @@
 package mendes.airbnb.utilisateurs;
 
 public class Hote extends Personne {
-	private int delaiDeReponse;
 
-	public Hote(String pPrenom, String pNom, int pAge, int pdelaiDeReponse) {
+	private final int delaiDeReponse;
+
+	public Hote(String pPrenom, String pNom, int pAge, int delaiDeReponse) {
 		super(pPrenom, pNom, pAge);
-		delaiDeReponse = pdelaiDeReponse;
+
+		this.delaiDeReponse = delaiDeReponse;
 	}
 
 	@Override
 	public void afficher() {
 		super.afficher();
-		if (delaiDeReponse > 0) {
-			System.out.println(" qui s'engage à répondre dans les " + delaiDeReponse + " heures.");
-		} else {
-			System.out.println(" qui s'engage à répondre dans l'heure");
-		}
+		System.out.println(" qui s'engage dans un delai de : " + delaiDeReponse + " h");
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj) {
+			return true;
+		}
+		
+		if (obj instanceof Hote) {
+			
+			Hote hote = (Hote) obj;
+			return super.equals(obj) && this.delaiDeReponse == hote.delaiDeReponse;
+		}
+
+		return false;
+	}	
 }

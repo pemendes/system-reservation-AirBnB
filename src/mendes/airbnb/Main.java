@@ -30,25 +30,19 @@ public class Main {
 		Logement appartement = new Appartement(hote, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 0);
 
 		MaDate dateArrivee = new MaDate(5, 12, 2016);
-		int nbNuits = 4;
-		int nbNuits1 = 7;
-		int nbVoyageurs = 2;
+		int nbNuits = 0;
+		int nbVoyageurs = 0;
+		Sejour sejour;
+		
+		if (nbNuits > 5) {
+			sejour = new SejourLong(dateArrivee, nbNuits, appartement, nbVoyageurs);
+		} else {
+			sejour = new SejourCourt(dateArrivee, nbNuits, maison, nbVoyageurs);
+		}
 
-		Sejour sejourCourt = new SejourCourt(dateArrivee, nbNuits, maison, nbVoyageurs);
-		Sejour sejourLong = new SejourLong(dateArrivee, nbNuits1, appartement, nbVoyageurs);
+		Reservation reservation = new Reservation(0, sejour, voyageur);
 
-		Reservation reservation1 = new Reservation(0, sejourCourt, voyageur);
-		Reservation reservation2 = new Reservation(0, sejourLong, voyageur);
-
-		System.out.println("--------- Court séjour ---------");
 		System.out.println("");
-		reservation1.afficher();
-		System.out.println("");
-		System.out.println("");
-		System.out.println("Réservation n°2");
-		System.out.println("");
-		System.out.println("--------- Long séjour ---------");
-		System.out.println("");
-		reservation2.afficher();
+		reservation.afficher();
 	}
 }
