@@ -26,8 +26,8 @@ public class Main {
 		Voyageur voyageur = new Voyageur("Maxime", "Albert", 29);
 		// Voyageur voyageur2 = new Voyageur("Michel", "Jordan", 34);
 
-		Logement maison = new Maison(hote, 40, "292 rue Colbert, 37000 Tours", 140, 1, 500, true);
-		Logement appartement = new Appartement(hote, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 0);
+		Logement maison = new Maison("Maison", hote, 40, "292 rue Colbert, 37000 Tours", 140, 1, 500, true);
+		Logement appartement = new Appartement("Appartement", hote, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 0);
 
 		MaDate dateArrivee = new MaDate(5, 12, 2016);
 		int nbNuits = 0;

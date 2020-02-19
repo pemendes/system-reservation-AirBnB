@@ -78,14 +78,14 @@ public class ParserLogementsXML {
 						int superficieJardin = Integer.parseInt(elementLogement.getElementsByTagName("superficieJardin").item(0).getTextContent());
 						boolean possedePiscine = Integer.parseInt(elementLogement.getElementsByTagName("possedePiscine").item(0).getTextContent()) == 1;
 
-						Maison maison = new Maison(hote, tarifParNuit, adresse, superficie, nbVoyageursMax, superficieJardin, possedePiscine);
+						Maison maison = new Maison("Maison", hote, tarifParNuit, adresse, superficie, nbVoyageursMax, superficieJardin, possedePiscine);
 						listLogements.add(maison);
 						
 					} else if(elementLogement.getNodeName().equals("Appartement")) {
 						int  superficieBalcon = Integer.parseInt(elementLogement.getElementsByTagName("superficieBalcon").item(0).getTextContent());
 						int  numeroEtage = Integer.parseInt(elementLogement.getElementsByTagName("numeroEtage").item(0).getTextContent());
 						
-						Appartement appartement = new Appartement(hote, tarifParNuit, adresse, superficie, nbVoyageursMax, numeroEtage, superficieBalcon);
+						Appartement appartement = new Appartement("Appartement", hote, tarifParNuit, adresse, superficie, nbVoyageursMax, numeroEtage, superficieBalcon);
 						listLogements.add(appartement);
 					}					
 				}

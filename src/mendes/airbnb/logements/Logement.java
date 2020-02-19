@@ -3,19 +3,33 @@ package mendes.airbnb.logements;
 import mendes.airbnb.utilisateurs.Hote;
 
 public abstract class Logement {
+	private String type;
 	private Hote hote;
 	private int tarifParNuit;
 	private String adresse;
 	private int superficie;
 	private int nbVoyageursMax;
-
-	public Logement(Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax) {
+	
+	public Logement(String type, Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax) {
+		this.type = type;
 		this.hote = hote;
 		this.tarifParNuit = tarifParNuit;
 		this.adresse = adresse;
 		this.superficie = superficie;
 		this.nbVoyageursMax = nbVoyageursMax;
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
 
 	public Hote getHote() {
 		return hote;

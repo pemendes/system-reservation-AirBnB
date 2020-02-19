@@ -1,6 +1,7 @@
 package mendes.airbnb.menu;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -97,7 +98,7 @@ public class Menu {
 		listReservations = new ArrayList<>();
 
 		// Création des Hotes
-		Hote hote1 = new Hote("Peter", "Bardu", 28, 12);
+		Hote hote1 = new Hote("Peter", "Bardu", 31, 12);
 		Hote hote2 = new Hote("Patrick", "Martin", 32, 12);
 		Hote hote3 = new Hote("Jeanne", "Voisin", 26, 24);
 		Hote hote4 = new Hote("Maurice", "Meunier", 46, 12);
@@ -108,15 +109,15 @@ public class Menu {
 		listHotes.add(hote4);
 
 		// Création de Logement
-		Maison maison1 = new Maison(hote1, 40, "18 Bis rue Romain Rolland, 37230 Fondettes", 140, 2, 500, true);
-		Maison maison2 = new Maison(hote1, 35, "146 Rue George Sand, 59553 Cuincy", 120, 2, 200, false);
-		Maison maison3 = new Maison(hote1, 60, "13 Rue de la Liberté, 62800 Liévin", 90, 4, 2000, true);
-		Appartement appartement1 = new Appartement(hote1, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 20);
-		Appartement appartement2 = new Appartement(hote1, 35, "111 Rue Colbert, 37000 Tours", 42, 2, 2, 0);
+		/*Maison maison1 = new Maison("Maison1", hote1, 40, "18 Bis rue Romain Rolland, 37230 Fondettes", 140, 2, 500, true);
+		Maison maison2 = new Maison("Maison2", hote1, 35, "146 Rue George Sand, 59553 Cuincy", 120, 2, 200, false);
+		Maison maison3 = new Maison("Maison3", hote1, 60, "13 Rue de la Liberté, 62800 Liévin", 90, 4, 2000, true);*/
+		Appartement appartement1 = new Appartement("Appartement1", hote1, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 20);
+		Appartement appartement2 = new Appartement("Appartement2", hote1, 35, "111 Rue Colbert, 37000 Tours", 42, 2, 2, 0);
 
-		listLogements.add(maison1);
+		/*listLogements.add(maison1);
 		listLogements.add(maison2);
-		listLogements.add(maison3);
+		listLogements.add(maison3);*/
 		listLogements.add(appartement1);
 		listLogements.add(appartement2);
 
@@ -126,7 +127,65 @@ public class Menu {
 
 		listVoyageurs.add(voyageur1);
 		listVoyageurs.add(voyageur2);
+		
+		String type = "Appartement";
+		String filePath = "resourse/logements.xml";
+		
+		//ParserLogementsXML.parser(filePath, listHotes, listLogements);
+		
+		//Maison maison =  Find.findOne(type, listLogements);
+		
+		
+		Appartement appt = findAppartementByName(listLogements);
+		
+		System.out.println(appt);
 
 	}
+	
+	public Maison findMaisonByName(String name, ArrayList<Logement> listLogements) {
+		
+		for (Logement logement : listLogements) {
+			
+		}
+		
+		return null;	
+	} 
+	
+	public static Appartement findAppartementByName(ArrayList<Logement> listLogements) {
+		
+		Appartement appartement = null;
+		
+		for (Logement logement : listLogements) {
+			appartement = (Appartement) logement;
+		}
+		
+		return appartement;	
+	}
+	
+	
+	
+
+	
+	
+	
+	public Logement findLogementByName(String name, ArrayList<Logement> listLogements) {
+		
+		Maison maison;
+		
+		for (Logement logement : listLogements) {
+			maison = (Maison) logement;
+		}
+		
+		return null;	
+	}
+	
+	public <T extends Logement> T findLogementByNameWithGenericity(ArrayList<Logement> listLogements) {
+		
+		for (Logement logement : listLogements) {
+			
+		}
+
+		return null;	
+	} 
 
 }

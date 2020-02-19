@@ -6,9 +6,9 @@ public class Appartement extends Logement {
 	private int numeroEtage;
 	private int superficieBalcon;
 
-	public Appartement(Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax, int numeroEtage,
-			int superficieBalcon) {
-		super(hote, tarifParNuit, adresse, superficie, nbVoyageursMax);
+	public Appartement(String type, Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax,
+			int numeroEtage, int superficieBalcon) {
+		super(type, hote, tarifParNuit, adresse, superficie, nbVoyageursMax);
 		this.numeroEtage = numeroEtage;
 		this.superficieBalcon = superficieBalcon;
 	}
@@ -23,7 +23,7 @@ public class Appartement extends Logement {
 		String isBalcon = (superficieBalcon > 0) ? "Oui" : "Non";
 		getHote().afficher();
 		System.out
-				.println("Le logement est une maison située au " + getAdresse() + " au " + numeroEtage + "ème étage.");
+				.println("Le logement est un appartement située au " + getAdresse() + " au " + numeroEtage + "ème étage.");
 		System.out.println("Superficie : " + getSuperficie() + "m2");
 		System.out.println("Balcon : " + isBalcon);
 	}

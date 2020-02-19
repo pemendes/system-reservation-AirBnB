@@ -91,7 +91,7 @@ class GestionLogements {
 		boolean possedePiscine = Menu.scanner.nextInt() == 1;
 		System.out.println();
 
-		Maison newMaison = new Maison(Menu.listHotes.get(numeroHote),
+		Maison newMaison = new Maison("Maison", Menu.listHotes.get(numeroHote),
 				tarifJournalier, adresse, supperficie, nbVoyageur,
 				superficieJardin, possedePiscine);
 		Menu.listLogements.add(newMaison);
@@ -128,7 +128,7 @@ class GestionLogements {
 		int numEtage = Menu.scanner.nextInt();
 		System.out.println();
 
-		Appartement newAppartement = new Appartement(
+		Appartement newAppartement = new Appartement("Appartement",
 				Menu.listHotes.get(numeroHote), tarifJournalier, adresse,
 				supperficie, nbVoyageur, numEtage, superficieBalcon);
 		Menu.listLogements.add(newAppartement);
