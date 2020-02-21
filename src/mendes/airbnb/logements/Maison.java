@@ -3,31 +3,34 @@ package mendes.airbnb.logements;
 import mendes.airbnb.utilisateurs.Hote;
 
 public class Maison extends Logement {
-	private int superficieJardin;
-	private boolean possedePiscine;
 
-
-
-	public Maison(String type, Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax,
-			int superficieJardin, boolean possedePiscine) {
-		super(type, hote, tarifParNuit, adresse, superficie, nbVoyageursMax);
+	private final int superficieJardin;
+	private final boolean possedePiscine;
+	
+	public Maison(String name, Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax, int superficieJardin,
+			boolean possedePiscine) {
+		super(name, hote, tarifParNuit, adresse, superficie, nbVoyageursMax);
 		this.superficieJardin = superficieJardin;
 		this.possedePiscine = possedePiscine;
 	}
-
+	
 	@Override
 	public void afficher() {
-		String isPiscine = (possedePiscine == true) ? "Oui" : "Non";
-		String isJardin = superficieJardin > 0 ? "Oui" : "Non";
-		getHote().afficher();
-		System.out.println("Le logement est une maison située au " + getAdresse() + ".");
-		System.out.println("Superficie : " + getSuperficie() + "m2");
-		System.out.println("Jardin : " + isJardin + " (" + superficieJardin + "m2)");
-		System.out.println("Balcon : " + isPiscine);
+		super.afficher();
+		System.out.println("Je suis une maison");
 	}
-
+	
 	@Override
-	public int getSuperficieTotal() {
-		return getSuperficie() + superficieJardin;
+	public int getSuperficieTotale() {
+		return superficieJardin + getSuperficie();
 	}
+	
+	public int getSuperficieJardin() {
+		return superficieJardin;
+	}
+	
+	public boolean hasPiscine() {
+		return possedePiscine;
+	}
+	
 }

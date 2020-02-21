@@ -12,7 +12,7 @@ public class Find {
 		boolean verifName= false;
 		Maison maison = null;
 		for (int i = 0; i < listLogement.size(); i++) {
-			if (( listLogement.get(i)).getType().equals(s)) {
+			if (( listLogement.get(i)).getName().equals(s)) {
 				verifName= true;
 				maison =  (Maison) listLogement.get(i);
 				return maison ;
@@ -28,7 +28,7 @@ public class Find {
 		boolean verifName= false;
 		Appartement appartement = null;
 		for (int i = 0; i < listLogement.size(); i++) {
-			if (( listLogement.get(i)).getType().equals(s)) {
+			if (( listLogement.get(i)).getName().equals(s)) {
 				verifName= true;
 				appartement =  (Appartement) listLogement.get(i);
 				return appartement ;
@@ -44,7 +44,7 @@ public class Find {
 		boolean verifName= false;
 		Logement logement = null;
 		for (int i = 0; i < listLogement.size(); i++) {
-			if (( listLogement.get(i)).getType().equals(s)) {
+			if (( listLogement.get(i)).getName().equals(s)) {
 				verifName= true;
 				logement =  listLogement.get(i);
 				return logement ;
@@ -57,11 +57,11 @@ public class Find {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T> T findLogementByNameWithGenericity(String s , ArrayList<Logement> listLogement) {
+	public static <T extends Logement> T findLogementByNameWithGenericity(String s , ArrayList<Logement> listLogement) {
 		boolean verifName= false;
 		T logement = null;
 		for (int i = 0; i < listLogement.size(); i++) {
-			if (( listLogement.get(i)).getType().equals(s)) {
+			if (( listLogement.get(i)).getName().equals(s)) {
 				verifName= true;
 				logement =  (T) listLogement.get(i);
 				return logement ;
@@ -72,6 +72,4 @@ public class Find {
 		}
 		return logement;
 	}
-
-
 }
