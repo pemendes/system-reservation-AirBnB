@@ -1,5 +1,7 @@
 package mendes.airbnb.utilisateurs;
 
+import mendes.airbnb.outils.Comparable;
+
 /**
  * classe qui représente une personne avec un prénom, un nom et un age.
  * 
@@ -8,11 +10,11 @@ package mendes.airbnb.utilisateurs;
  * @version 1001
  *
  */
-
-public class Personne {
-	private String nom;
-	private String prenom;
-	private int age;
+public class Personne implements Comparable {
+	
+	private final String nom;
+	private final String prenom;
+	private final int age;
 
 	/**
 	 * Constructeur de la classe personne avec les parametre:
@@ -51,7 +53,13 @@ public class Personne {
 	 * Pedro Mendes (38 ans)
 	 */
 	public void afficher() {
-		System.out.print(prenom + " " + nom + " (" + age + " ans)");
+		System.out.print(prenom + " " + nom);
 	}
+
+	@Override
+	public int getValueToCompare() {
+		return age;
+	}
+	
 }
 

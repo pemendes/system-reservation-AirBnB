@@ -4,32 +4,35 @@ import java.util.Date;
 
 import mendes.airbnb.logements.Logement;
 
-public class SejourCourt extends Sejour implements ConditionsTarifairesInterface {
+public class SejourCourt extends Sejour implements ConditionTarifaireInterface {
 
-	public SejourCourt(Date dateArrivee, int pNbNuits, Logement logement, int pNbVoyageurs) {
-		super(dateArrivee, pNbNuits, logement, pNbVoyageurs);
+	public SejourCourt(Date dateArrivee, int nbNuits, Logement logement, int nbVoyageurs) {
+		super(dateArrivee, nbNuits, logement, nbVoyageurs);	
 	}
 
 	@Override
-	public void miseAJourDuTarif() {
-		tarif = nbNuits * logement.getTarifParNuit();
+	protected void miseAJourTarif() {
+		this.tarif = nbNuits * logement.getTarifParNuit();
+	}	
+	
+	@Override
+	public void afficher() {	
+		super.afficher();
+		System.out.println("Le tarif est : " + tarif + " euros ");
+	}
+
+	@Override
+	public boolean benefiniePromotion() {
+		return false;
+	}
+
+	@Override
+	public int getTarif() {
+		return tarif;
 	}
 
 	@Override
 	public boolean verificationNombreDeNuits() {
-		if (nbNuits >= 1 && nbNuits <= 31) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean beneficePromotion() {
-		return false;
-	}
-
-	@Override
-	public void afficher() {
-		super.afficher();
-	}
+		return nbNuits >= 1 && nbNuits <= 5;
+	}	
 }

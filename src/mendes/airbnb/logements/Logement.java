@@ -1,8 +1,9 @@
 package mendes.airbnb.logements;
 
 import mendes.airbnb.utilisateurs.Hote;
+import mendes.airbnb.outils.Comparable;
 
-public abstract class Logement {
+public abstract class Logement implements Comparable {
 
 	private final String name;
 	private final Hote hote;
@@ -47,5 +48,11 @@ public abstract class Logement {
 
 	public String getName() {
 		return name;
-	}	
+	}
+
+	@Override
+	public int getValueToCompare() {
+		return tarifParNuit;
+	}
+	
 }

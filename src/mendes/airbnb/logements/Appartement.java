@@ -7,8 +7,8 @@ public class Appartement extends Logement {
 	public final int numeroEtage;
 	public final int superficieBalcon;
 
-	public Appartement(String name, Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax,
-			int numEtage, int superficieBalcon) {
+	public Appartement(String name, Hote hote, int tarifParNuit, String adresse, int superficie, int nbVoyageursMax, int numEtage,
+			int superficieBalcon) {
 		super(name, hote, tarifParNuit, adresse, superficie, nbVoyageursMax);
 
 		this.numeroEtage = numEtage;
@@ -25,10 +25,6 @@ public class Appartement extends Logement {
 	@Override
 	public int getSuperficieTotale() {
 		return superficieBalcon + getSuperficie();
-	}
-
-	public int getSuperficieBalcon() {
-		return superficieBalcon;
 	}
 
 }

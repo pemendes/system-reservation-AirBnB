@@ -1,16 +1,16 @@
 package mendes.airbnb.menu;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
 
 import mendes.airbnb.logements.Appartement;
 import mendes.airbnb.logements.Logement;
 import mendes.airbnb.logements.Maison;
+import mendes.airbnb.outils.Compare;
 import mendes.airbnb.reservations.Reservation;
 import mendes.airbnb.utilisateurs.Hote;
+import mendes.airbnb.utilisateurs.Personne;
 import mendes.airbnb.utilisateurs.Voyageur;
 
 public class Menu {
@@ -27,35 +27,41 @@ public class Menu {
 		System.out.println("Bienvenu chez aribnb");
 
 		scanner = new Scanner(System.in);
+		scanner.useDelimiter("\n");
+	
+		//init();
 		listHotes = new ArrayList<>();
 		listLogements = new ArrayList<>();
+		
+		// -----------------------------------------------------------------------------------------
+		// Correction 7
 		ParserLogementsXML.parse("logements.xml", listHotes, listLogements);
 
-		// Méthodes 1
-		Optional<Maison> optionalMaison = findMaisonByName("Maison 5678");
-		
-		// Avec un optional on test avant que la ref n'est pas null de cette manière
+		Optional<Maison> optionalMaison = findMaisonByName("Maison 13");
 		if (optionalMaison.isPresent()) {
-			Maison maison = optionalMaison.get();
-			maison.afficher();
+			Maison maisonNonNull = optionalMaison.get();
+			//maisonNonNull.afficher();
 		}
 		
-		/*
-		// On doit faire ça mais on n'est pas obligé...
-		if (maison1 != null) {
-			maison1.afficher();	
-		}
-		*/
+		Appartement appartement = findAppartementByName("Appartement 1");
+		//appartement.afficher();	
 		
-		Appartement appartement1 = findAppartementByName("Appartement 2");
+		Maison maison1 = (Maison) findLogementByName("Maison 1");
+		//maison2.afficher();
 		
-		// Méthode 2
-		Maison maison2 = (Maison) findLogementByName("Maison 2");
-		Appartement appartement2 = (Appartement) findLogementByName("Appartement 2");
+		Appartement appartement2 = (Appartement) findLogementByName("Appartement 1");
+		//appartement2.afficher();
 		
-		// Méthode 3
-		Maison maison3 = findLogementByNameByGenericity("Maison 2");
-		Appartement appartement3 = findLogementByNameByGenericity("Appartement 2");
+
+		Maison maison2 = findLogementByNameV2("Maison 2");
+		//Appartement appartement3 = findLogementByNameV2("Appartement 1");
+		
+
+		Compare<Maison> compare = new Compare<Maison>(maison1, maison2);
+		compare.getHigher().afficher();
+		
+		Compare<Personne> compare2 = new Compare<Personne>(listHotes.get(0), listHotes.get(1));
+		compare2.getHigher().afficher();
 		
 		scanner.close();
 	}
@@ -106,7 +112,6 @@ public class Menu {
 		} while (!(result > 0 && result <= maxValue));
 
 		return result;
-
 	}
 
 	static int choix(int maxValue) {
@@ -155,11 +160,11 @@ public class Menu {
 		listHotes.add(hote3);
 
 		// Création de Logement
-		Maison maison1 = new Maison("Maison1", hote1, 40, "18 Bis rue Romain Rolland, 37230 Fondettes", 140, 2, 500, true);
-		Maison maison2 = new Maison("Maison2", hote1, 35, "146 Rue George Sand, 59553 Cuincy", 120, 2, 200, false);
-		Maison maison3 = new Maison("Maison3", hote1, 60, "13 Rue de la Liberté, 62800 Liévin", 90, 4, 2000, true);
-		Appartement appartement1 = new Appartement("Appartement1", hote1, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 20);
-		Appartement appartement2 = new Appartement("Appartement2", hote1, 35, "111 Rue Colbert, 37000 Tours", 42, 2, 2, 0);
+		Maison maison1 = new Maison("Maison 1", hote1, 40, "18 Bis rue Romain Rolland, 37230 Fondettes", 140, 2, 500, true);
+		Maison maison2 = new Maison("Maison 2", hote1, 35, "146 Rue George Sand, 59553 Cuincy", 120, 2, 200, false);
+		Maison maison3 = new Maison("Maison 3", hote1, 60, "13 Rue de la Liberté, 62800 Liévin", 90, 4, 2000, true);
+		Appartement appartement1 = new Appartement("Appartement 1", hote1, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 20);
+		Appartement appartement2 = new Appartement("Appartement 2", hote1, 35, "111 Rue Colbert, 37000 Tours", 42, 2, 2, 0);
 
 		listLogements.add(maison1);
 		listLogements.add(maison2);
@@ -182,7 +187,7 @@ public class Menu {
 		Maison maison = null;
 		
 		for (Logement logement : listLogements) {
-			if(logement instanceof Maison && logement.getName().equals(name)) {
+			if (logement instanceof Maison && logement.getName().equals(name)) {
 				maison = (Maison) logement;
 				break;
 			}
@@ -190,59 +195,51 @@ public class Menu {
 		
 		return Optional.ofNullable(maison);
 	}
-
+	
 	static Appartement findAppartementByName(String name) {
 		
-		for (Logement logement : listLogements) {
-			if(logement instanceof Appartement && logement.getName().equals(name)) {
-				return (Appartement) logement;
-			}
-		}
-		return null;
-	}
-
-	// ------------------------------------------------------------------
-	// Méthodes 2
-	static Logement findLogementByName(String name) {
+		Appartement appartement = null;
 		
 		for (Logement logement : listLogements) {
-			if(logement.getName().equals(name)) {
-				return logement;
-			}
-		}
-		
-		return null;
-	}
-
-	// ------------------------------------------------------------------
-	// Méthodes 3.1
-	@SuppressWarnings("unchecked")
-	static <T extends Logement> T findLogementByNameByGenericity(String name) {
-		
-		for (Logement logement : listLogements) {
-			if(logement.getName().equals(name)) {
-				return (T) logement;
-			}
-		}
-		
-		return null;
-	}
-	
-	// Méthodes 3.2
-	static <T extends Logement> Optional<T> findLogementByNameByGenericity2(String name) {
-		
-		T result = null;
-		
-		for (Logement logement : listLogements) {
-			if(logement.getName().equals(name)) {
-				result = (T) logement;
+			if (logement instanceof Appartement && logement.getName().equals(name)) {
+				appartement = (Appartement) logement;
 				break;
 			}
 		}
 		
-		return Optional.ofNullable(result);
+		return appartement;
 	}
 	
-
+	// ------------------------------------------------------------------
+	// Méthodes 2
+	static Logement findLogementByName(String name) {
+		
+		Logement l = null;
+		
+		for (Logement logement : listLogements) {
+			if (logement.getName().equals(name)) {
+				l = logement;
+				break;
+			}
+		}
+		
+		return l;
+	}
+	// ------------------------------------------------------------------
+	// Méthodes 2
+	static <T extends Logement> T findLogementByNameV2(String name) {
+		T result = null;
+		
+		for (Logement logement : listLogements) {
+			if (logement.getName().equals(name)) {
+				
+				result = (T) logement;
+				
+				break;
+			}
+		}
+		
+		return result;
+	}
 
 }

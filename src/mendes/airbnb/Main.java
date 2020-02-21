@@ -1,11 +1,13 @@
 package mendes.airbnb;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import mendes.airbnb.logements.Appartement;
 import mendes.airbnb.logements.Logement;
 import mendes.airbnb.logements.Maison;
 import mendes.airbnb.outils.MaDate;
+import mendes.airbnb.outils.Utile;
 import mendes.airbnb.reservations.Reservation;
 import mendes.airbnb.reservations.Sejour;
 import mendes.airbnb.reservations.SejourCourt;
@@ -17,32 +19,57 @@ public class Main {
 
 	public static void main(String[] args) throws ParseException {
 
-		System.out.println("Bienvenue chez AirBnB");
-		System.out.println("Réservation n°1");
-		System.out.println("");
+		// ----------------------------------------------------
+		// Données - Personnes et Logements
+		Hote hote1 = new Hote("Peter", "Bardu", 31, 12);
+		Hote hote2 = new Hote("Michel", "Jordan", 34, 1);
+		Voyageur voyageur1 = new Voyageur("Jean", "Mi", 24);
+		Voyageur voyageur2 = new Voyageur("Emma", "Martin", 31);
 
-		Hote hote = new Hote("Peter", "Bardu", 31, 12);
-		// Hote hote1 = new Hote("Emma", "Martin", 31, 2);
-		Voyageur voyageur = new Voyageur("Maxime", "Albert", 29);
-		// Voyageur voyageur2 = new Voyageur("Michel", "Jordan", 34);
+		Maison maison = new Maison("Maison 21", hote1, 100, "81 rue Colbert", 60, 4, 1000, true);
+		Appartement appartement1 = new Appartement("Appart 231", hote1, 60, "83 rue Colbert", 60, 4, 2, 10);
+		Appartement appartement2 = new Appartement("Appart 232", hote2, 130, "85 rue Colbert", 60, 4, 1, 0);
 
-		Logement maison = new Maison("Maison", hote, 40, "292 rue Colbert, 37000 Tours", 140, 1, 500, true);
-		Logement appartement = new Appartement("Appartement", hote, 35, "46 Rue des Canonniers, 59800 Lille", 72, 2, 3, 0);
+		// ----------------------------------------------------
+		// Critère de séjour
 
-		MaDate dateArrivee = new MaDate(5, 12, 2016);
-		int nbNuits = 0;
-		int nbVoyageurs = 0;
+		// Date dateArrivee = Utile.stringToDate("01/07/2020");
+		Date dateArrivee = new MaDate(9, 3, 2020);
+		int nbNuits = 2;
+		int nbVoyageurs = 2;
+		Logement logement = maison;
+
 		Sejour sejour;
-		
-		if (nbNuits > 5) {
-			sejour = new SejourLong(dateArrivee, nbNuits, appartement, nbVoyageurs);
+
+		if (nbNuits < 6) {
+			sejour = new SejourCourt(dateArrivee, nbNuits, logement, nbVoyageurs);
 		} else {
-			sejour = new SejourCourt(dateArrivee, nbNuits, maison, nbVoyageurs);
+			sejour = new SejourLong(dateArrivee, nbNuits, logement, nbVoyageurs);
 		}
 
-		Reservation reservation = new Reservation(0, sejour, voyageur);
+		// Problème 1
+		//dateArrivee.setYear(98);
 
-		System.out.println("");
-		reservation.afficher();
+		// Problème 2
+		//Date dateDeSejour = sejour.getDateArrivee();
+		//dateDeSejour.setYear(67);
+
+		// Problème 3
+		//sejour.setLogement(appartement1);
+
+
+		try {
+		
+			Reservation reservation = new Reservation(0, sejour, voyageur1);
+			
+			// Problème 3.2 et 3.3
+			Utile.sendEmail((Reservation)reservation.clone());
+			
+			reservation.afficher();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
+
 }

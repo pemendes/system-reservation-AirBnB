@@ -25,12 +25,4 @@ public class Maison extends Logement {
 		return superficieJardin + getSuperficie();
 	}
 	
-	public int getSuperficieJardin() {
-		return superficieJardin;
-	}
-	
-	public boolean hasPiscine() {
-		return possedePiscine;
-	}
-	
 }

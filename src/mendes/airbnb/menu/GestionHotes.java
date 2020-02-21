@@ -15,6 +15,7 @@ class GestionHotes {
 			Hote hote = Menu.listHotes.get(i);
 			System.out.print("Numéro " + (i + 1) + " : ");
 			hote.afficher();
+			System.out.println();
 		}
 
 		System.out.println("Saisir une option : ");
@@ -37,7 +38,7 @@ class GestionHotes {
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Une erreur est survenue lors de la suppression d'un hôte");
 			listerHotes();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			Menu.scanner.next();
 			System.out.println("Une erreur est survenue");
 			listerHotes();
@@ -83,7 +84,7 @@ class GestionHotes {
 		System.out.println("Numéro ?");
 		int indice = Menu.scanner.nextInt();
 
-		Menu.listHotes.remove(indice);
+		Menu.listHotes.remove(indice - 1);
 
 		listerHotes();
 	}

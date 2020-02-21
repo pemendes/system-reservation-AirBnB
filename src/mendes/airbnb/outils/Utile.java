@@ -1,46 +1,54 @@
 package mendes.airbnb.outils;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import mendes.airbnb.reservations.Reservation;
 
 /**
  * 
  * @author pedro
  *
  */
-public class Utile {
+public final class Utile {
+
+	
+	private Utile() {
+		throw new UnsupportedOperationException();
+	}
+	
+
+	private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	/**
-	 * Méthode permettant de créer une date à partir d'une chaîne de caractères au
-	 * format mois/jour/année (e.g. 04/02/2020 pour le 2 Avril 2020) <br>
-	 * <b>ATTENTION FORMAT AMERICAIN</b>
+	 * Méthode qui permet de construire une date à partir d'une chaîne de caractères
 	 * 
-	 * @param pStringDate au format mois/jour/année (e.g. 04/02/2020 pour le 2 Avril
-	 *                    2020)
-	 * @return ma date bien initialisée
+	 * @param strDate
+	 *            chaîne de caractères au format mm/dd/yyyy (ex : 01/07/2020 pour le
+	 *            7 Janvier 2020)
+	 * @return objet de type Date initialisé à la date passé en paramètre
 	 */
-	public static Date stringToDate(String pStringDate) {
-		return new Date(pStringDate);
+	public static Date stringToDate(String strDate) {
+		return new Date(strDate);
 	}
 
 	/**
-	 * Méthode permettant de créer une date à partir de jour mois année (e.g. jour :
-	 * 2, mois : 4, année : 2020 pour le 2 Avril 2020)
+	 * Méthode qui permet de formater une Date en String.
 	 * 
-	 * @param jour  le jour de la date entre 1 et 31
-	 * @param mois  le mois de la date entre 1 et 12 (e.g. 1 pour janvier)
-	 * @param annee l'année de la date (e.g. 2020 pour l'année 2020)
-	 * @return ma date bien initialisée
-	 */
-	public static Date stringToDate(int jour, int mois, int annee) {
-		return new Date(annee - 1900, mois - 1, jour);
-	}
-
-	/**
-	 * 
-	 * @param date obj date à afficher
-	 * @return une chaîne de caractères au format jour/mois/année
+	 * @param date
+	 *            a formater
+	 * @return la chaîne de caractères au format mm/dd/yyyy (ex : 01/07/2020 pour le
+	 *         7 Janvier 2020)
 	 */
 	public static String dateToString(Date date) {
-		return date.getDate() + "/" + (date.getMonth() + 1) + "/" + (date.getYear() + 1900);
+		return simpleDateFormat.format(date);
 	}
+	
+	public static void sendEmail(Reservation reservation) {
+
+		reservation.setEstValidee(true);
+		reservation.getSejour().setDateArrivee(new Date(15000000000l));
+
+	}
+	
 }
