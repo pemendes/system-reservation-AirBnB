@@ -24,5 +24,13 @@ public class Maison extends Logement {
 	public int getSuperficieTotale() {
 		return superficieJardin + getSuperficie();
 	}
-	
+
+	public int getSuperficieJardin() {
+		// TODO Auto-generated method stub
+		return superficieJardin;
+	}
+
+	public boolean hasPiscine() {
+		return possedePiscine;
+	}
 }

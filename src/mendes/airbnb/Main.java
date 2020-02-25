@@ -1,17 +1,20 @@
 package mendes.airbnb;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import mendes.airbnb.logements.Appartement;
 import mendes.airbnb.logements.Logement;
 import mendes.airbnb.logements.Maison;
 import mendes.airbnb.outils.MaDate;
+import mendes.airbnb.outils.Search;
+import mendes.airbnb.outils.Search.SearchBuilder;
 import mendes.airbnb.outils.Utile;
 import mendes.airbnb.reservations.Reservation;
 import mendes.airbnb.reservations.Sejour;
-import mendes.airbnb.reservations.SejourCourt;
-import mendes.airbnb.reservations.SejourLong;
+import mendes.airbnb.reservations.SejourFactory;
 import mendes.airbnb.utilisateurs.Hote;
 import mendes.airbnb.utilisateurs.Voyageur;
 
@@ -39,37 +42,40 @@ public class Main {
 		int nbVoyageurs = 2;
 		Logement logement = maison;
 
-		Sejour sejour;
-
-		if (nbNuits < 6) {
-			sejour = new SejourCourt(dateArrivee, nbNuits, logement, nbVoyageurs);
-		} else {
-			sejour = new SejourLong(dateArrivee, nbNuits, logement, nbVoyageurs);
-		}
+		Sejour sejour = SejourFactory.getSejour(dateArrivee, nbNuits, logement, nbVoyageurs);
 
 		// Problème 1
-		//dateArrivee.setYear(98);
+		// dateArrivee.setYear(98);
 
 		// Problème 2
-		//Date dateDeSejour = sejour.getDateArrivee();
-		//dateDeSejour.setYear(67);
+		// Date dateDeSejour = sejour.getDateArrivee();
+		// dateDeSejour.setYear(67);
 
 		// Problème 3
-		//sejour.setLogement(appartement1);
-
+		// sejour.setLogement(appartement1);
 
 		try {
-		
+
 			Reservation reservation = new Reservation(0, sejour, voyageur1);
-			
+
 			// Problème 3.2 et 3.3
-			Utile.sendEmail((Reservation)reservation.clone());
-			
-			reservation.afficher();
+			Utile.sendEmail((Reservation) reservation.clone());
+
+			// reservation.afficher();
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+
+		SearchBuilder searchBuilder = new SearchBuilder(2).tarifMaxParNuit(79);
+
+		ArrayList<Logement> logements = searchBuilder.build().result();
+
+		for (Logement l : logements) {
+			System.out.println("--------------------------");
+			l.afficher();
+		}
+
 	}
 
 }

@@ -12,7 +12,14 @@ public class Reservation implements Cloneable {
 	private boolean estValidee;
 	private Date dateDeReservation;
 
-	public Reservation(int identifiant, Sejour sejour, Voyageur voyageur) {
+	/**
+	 * 
+	 * @param identifiant
+	 * @param sejour
+	 * @param voyageur
+	 * @throws IllegalArgumentException
+	 */
+	public Reservation(int identifiant, Sejour sejour, Voyageur voyageur) throws IllegalArgumentException {
 
 		// Problème 3.1
 		if (sejour == null || voyageur == null) {
@@ -58,14 +65,13 @@ public class Reservation implements Cloneable {
 		
 		try {
 			reservation = (Reservation) super.clone();
+			reservation.sejour = (Sejour) sejour.clone();
+			reservation.dateDeReservation = (Date) dateDeReservation.clone();
 		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		// On clone la date et le séjour car ils sont mutables
-		reservation.dateDeReservation = (Date) dateDeReservation.clone();
-		reservation.sejour = (Sejour) sejour.clone();
-		
+	
 		return reservation;
 	}
 	

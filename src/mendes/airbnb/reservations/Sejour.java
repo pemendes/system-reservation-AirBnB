@@ -53,11 +53,6 @@ public abstract class Sejour implements SejourInterface, Cloneable {
 		this.dateArrivee = (Date) dateArrivee.clone();
 	}
 
-	/**
-	 * 
-	 * @param logement
-	 * @throws IllegalArgumentException
-	 */
 	public void setLogement(Logement logement) throws IllegalArgumentException {
 
 		if (logement == null) {
@@ -71,23 +66,14 @@ public abstract class Sejour implements SejourInterface, Cloneable {
 
 	public Object clone() {
 		Sejour sejour = null;
-		try {
-			// On récupère l'instance à renvoyer par l'appel de la 
-			// méthode super.clone()
-			sejour =(Sejour) super.clone();
-		} catch(CloneNotSupportedException cnse) {
-			// Ne devrait jamais arriver car nous implémentons 
-			// l'interface Cloneable
-			cnse.printStackTrace(System.err);
-		}
+			try {
+				sejour =(Sejour) super.clone();
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
-		// On clone l'attribut de type Date qui n'est pas immuable.
 		sejour.dateArrivee = (Date) dateArrivee.clone();
-		
-		// On ne clone pas logement car il est immuable
-		// On ne clone pas nbNuits, nbVoyageurs car se sont des types primitifs (passage par valeur).
-		
-		// on renvoie le clone
 		return sejour;
 	}
 }
