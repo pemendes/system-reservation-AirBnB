@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import mendes.airbnb.logements.Appartement;
 import mendes.airbnb.logements.Logement;
@@ -24,58 +25,37 @@ public class Main {
 
 		// ----------------------------------------------------
 		// Données - Personnes et Logements
-		Hote hote1 = new Hote("Peter", "Bardu", 31, 12);
+		Hote hote1 = new Hote(null, "Bardu", 31, 12);
 		Hote hote2 = new Hote("Michel", "Jordan", 34, 1);
 		Voyageur voyageur1 = new Voyageur("Jean", "Mi", 24);
 		Voyageur voyageur2 = new Voyageur("Emma", "Martin", 31);
 
 		Maison maison = new Maison("Maison 21", hote1, 100, "81 rue Colbert", 60, 4, 1000, true);
 		Appartement appartement1 = new Appartement("Appart 231", hote1, 60, "83 rue Colbert", 60, 4, 2, 10);
-		Appartement appartement2 = new Appartement("Appart 232", hote2, 130, "85 rue Colbert", 60, 4, 1, 0);
+		Appartement appartement2 = new Appartement("Appart 232", hote2, 1300, "85 rue Colbert", 60, 4, 1, 0);
 
 		// ----------------------------------------------------
 		// Critère de séjour
-
-		// Date dateArrivee = Utile.stringToDate("01/07/2020");
 		Date dateArrivee = new MaDate(9, 3, 2020);
-		int nbNuits = 2;
+		int nbNuits = 3;
 		int nbVoyageurs = 2;
 		Logement logement = maison;
 
 		Sejour sejour = SejourFactory.getSejour(dateArrivee, nbNuits, logement, nbVoyageurs);
 
-		// Problème 1
-		// dateArrivee.setYear(98);
-
-		// Problème 2
-		// Date dateDeSejour = sejour.getDateArrivee();
-		// dateDeSejour.setYear(67);
-
-		// Problème 3
-		// sejour.setLogement(appartement1);
-
 		try {
-
 			Reservation reservation = new Reservation(0, sejour, voyageur1);
-
-			// Problème 3.2 et 3.3
-			Utile.sendEmail((Reservation) reservation.clone());
-
 			// reservation.afficher();
-
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
-		SearchBuilder searchBuilder = new SearchBuilder(2).tarifMaxParNuit(79);
-
-		ArrayList<Logement> logements = searchBuilder.build().result();
-
-		for (Logement l : logements) {
-			System.out.println("--------------------------");
-			l.afficher();
-		}
-
+		// ----------------------------------------------------
+		// Recherche + affichage du résultat
+		Search search = new Search.SearchBuilder(2).build();
+		search.result().forEach(Logement::afficher);
+		
+		
 	}
-
 }
